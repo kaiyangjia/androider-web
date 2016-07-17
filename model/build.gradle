@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 
 sourceSets{
@@ -12,6 +12,7 @@ sourceSets{
 
 dependencies{
     // lib Dependencies
+    compile files('libs/lombok.jar')
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
     compile "org.apache.commons:commons-lang3:$rootProject.ext.commonsLang3Version"
 

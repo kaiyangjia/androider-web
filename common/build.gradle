@@ -11,13 +11,10 @@ sourceSets{
 
 dependencies{
     // lib Dependencies
-    compile "com.sparkjava:spark-core:$rootProject.ext.sparkFrameworkVersion"
     compile "org.slf4j:slf4j-simple:$rootProject.ext.slf4jSimpleVersion"
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
     compile "org.apache.commons:commons-lang3:$rootProject.ext.commonsLang3Version"
     compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-    compile project(':model')
-    compile project(':common')
 
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"

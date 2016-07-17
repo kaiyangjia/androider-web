@@ -4,7 +4,11 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'maven'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
+
+dependencies{
+
+}
 
 
 allprojects {
@@ -14,17 +18,14 @@ allprojects {
     }
 }
 
-
-dependencies{
-
-}
-
-
 // Define versions in a single place
 ext {
     //lib dependencies
+    sparkFrameworkVersion = '2.5'
     commonsLang3Version = '3.1'
     guavaVersion = '19.0'
+    gsonVersion = '2.7'
+    slf4jSimpleVersion = '1.7.12'
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
     powerMockito = '1.6.2'

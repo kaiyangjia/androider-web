@@ -1,4 +1,5 @@
 rootProject.name = 'androider-web'
 include 'model'
 include 'bbs'
+include 'common'
 
