@@ -1,0 +1,32 @@
+group 'com.jiakaiyang'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.5
+
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
+
+dependencies{
+
+}
+
+
+// Define versions in a single place
+ext {
+    //lib dependencies
+    commonsLang3Version = '3.1'
+    guavaVersion = '19.0'
+    junitVersion = '4.12'
+    mockitoVersion = '1.10.19'
+    powerMockito = '1.6.2'
+    hamcrestVersion = '1.3'
+}
