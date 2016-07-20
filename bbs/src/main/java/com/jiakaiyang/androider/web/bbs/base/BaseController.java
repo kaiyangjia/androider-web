@@ -1,5 +1,6 @@
 package com.jiakaiyang.androider.web.bbs.base;
 
+import com.jiakaiyang.androider.web.bbs.base.entity.Answer;
 import com.jiakaiyang.androider.web.common.tools.InstanceUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,15 +43,16 @@ public abstract class BaseController implements Route{
      */
     public Object dispatch(String path, Request request){
         if(!path.contains(getParentPath())){
-            //TODO 404 处理
-            return 404;
+            return new Answer(Constants.CODE_NOT_FOUND);
         }
 
         path = StringUtils.removeStart(path,getParentPath());
         if(StringUtils.isBlank(path)){
             //返回该controller中的index
-            index();
-            return 404;
+            Object obj = index();
+            Answer answer = new Answer(Constants.CODE_SUCCESS);
+            answer.setData(obj);
+            return obj;
         }
         String handlerName = StringUtils.split(path, "/")[0];
         Method method = InstanceUtils.getInstanceMethod(this, handlerName);
@@ -59,15 +61,15 @@ public abstract class BaseController implements Route{
         try {
             return method.invoke(this, request);
         } catch (IllegalAccessException e) {
-            //TODO 403处理
             e.printStackTrace();
+            return new Answer(Constants.CODE_FORBIDEN);
         } catch (InvocationTargetException e) {
-            //TODO 参数错误
             e.printStackTrace();
-        }
+            return new Answer(Constants.CODE_PARAM_ERROR);
+        }finally {
+            method.setAccessible(isAccess);
 
-        method.setAccessible(isAccess);
-        return null;
+        }
     }
 
     public String getPath() {

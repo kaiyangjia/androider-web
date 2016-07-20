@@ -13,7 +13,6 @@ import static spark.Spark.get;
  * 请求分发
  */
 public class Dispatcher{
-    public static final String JSON_TEXT = "application/json";
 
 
     /**
