@@ -11,9 +11,17 @@ import spark.Route;
 public class GuardController extends BaseController{
     public static final String PARENT_PATH = "/";
 
-
     @Override
     public String getParentPath() {
         return PARENT_PATH;
+    }
+
+    @Override
+    public Object index() {
+        return null;
+    }
+
+    public Object helloj(Request request){
+        return "hello j";
     }
 }

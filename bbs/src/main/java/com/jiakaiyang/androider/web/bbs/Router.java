@@ -1,6 +1,7 @@
 package com.jiakaiyang.androider.web.bbs;
 
 import com.jiakaiyang.androider.web.bbs.login.GuardController;
+import spark.Route;
 
 import static com.jiakaiyang.androider.web.bbs.Dispatcher.dispatchGet;
 import static spark.Spark.get;
@@ -10,10 +11,11 @@ import static spark.Spark.get;
  */
 public class Router {
 
+    public static void main(String[] args){
+        init();
+    }
 
     public static void init(){
-        get("/hello", (req, res) -> "");
-
-        dispatchGet("/hello", new GuardController());
+        dispatchGet("/helloj", new GuardController());
     }
 }
