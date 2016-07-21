@@ -3,6 +3,7 @@ package com.jiakaiyang.androider.web.common.convert;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
@@ -27,10 +28,13 @@ public class JsonConverter {
             String valueStr = value instanceof Map
                     ?mapToJson((Map<String, Object>) value)
                     :gson.toJson(value);
+            if(valueStr != null){
+                valueStr = valueStr.replaceAll("\"", "");
+            }
             JsonPrimitive jsonPrimitive = new JsonPrimitive(valueStr);
             jsonObject.add(key, jsonPrimitive);
         }
 
-        return jsonObject.getAsString();
+        return gson.toJson(jsonObject);
     }
 }

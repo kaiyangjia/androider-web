@@ -2,10 +2,7 @@ package com.jiakaiyang.androider.web.bbs.base;
 
 import com.jiakaiyang.androider.web.bbs.base.entity.Answer;
 import com.jiakaiyang.androider.web.common.tools.InstanceUtils;
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
-import org.eclipse.jetty.util.StringUtil;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -18,6 +15,7 @@ import java.lang.reflect.Method;
  */
 public abstract class BaseController implements Route{
     private String path;
+    public JsonTransformer jsonTransformer = new JsonTransformer();
 
     /**
      * 获取该controller的上一级url
@@ -30,10 +28,8 @@ public abstract class BaseController implements Route{
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
-        String result = (String) dispatch(this.getPath(), request);
-        response.type("application/json");
-        response.body(result);
-        return result;
+        Object result = dispatch(this.getPath(), request);
+        return jsonTransformer.render(result);
     }
 
     /**
@@ -56,6 +52,9 @@ public abstract class BaseController implements Route{
         }
         String handlerName = StringUtils.split(path, "/")[0];
         Method method = InstanceUtils.getInstanceMethod(this, handlerName);
+        if(method == null){
+            return new Answer(Constants.CODE_NOT_FOUND);
+        }
         boolean isAccess = method.isAccessible();
         method.setAccessible(true);
         try {

@@ -20,8 +20,4 @@ public class GuardController extends BaseController{
     public Object index() {
         return null;
     }
-
-    public Object helloj(Request request){
-        return "hello j";
-    }
 }
