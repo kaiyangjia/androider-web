@@ -2,7 +2,7 @@
 .gradle/
 *gradle/
 *.class
-*/out/
+*out/
 */build/
 build/
 *.DS_Store
