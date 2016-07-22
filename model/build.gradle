@@ -15,6 +15,10 @@ dependencies{
     compile files('libs/lombok.jar')
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
     compile "org.apache.commons:commons-lang3:$rootProject.ext.commonsLang3Version"
+    compile "com.google.inject:guice:$rootProject.ext.guiceVersion"
+//    compile "org.apache.commons:commons-configuration2:$rootProject.ext.commonsConfiguration2Version"
+    compile "com.querydsl:querydsl-sql:$rootProject.ext.querySQLVersion"
+    compile "com.alibaba:druid:$rootProject.ext.druidVersion"
 
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"
