@@ -1,8 +1,37 @@
 sourceCompatibility = 1.8
 
+ext {
+    generatedSourcesDir = file("${buildDir}/generated-sources")
+    querydslAptVersion  = "3.7.4"
+    querydslCodeGenVersion = "3.7.4"
+}
 
 sourceSets{
     main.java.srcDirs = ['src/main/java']
+}
+
+configurations {
+    querydslapt
+}
+
+//生成代码，暂时不使用
+task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
+    source = sourceSets.main.java
+    classpath = configurations.compile + configurations.querydslapt
+    options.compilerArgs = [
+            "-proc:only",
+            "-processor", "com.querydsl.apt.jdo.JDOAnnotationProcessor"
+    ]
+    destinationDir = generatedSourcesDir
+}
+
+compileJava {
+    doFirst {
+        generatedSourcesDir.mkdirs();
+    }
+    options.compilerArgs += ['-s', generatedSourcesDir]
+
+    dependsOn generateQueryDSL
 }
 
 dependencies{
@@ -10,4 +39,6 @@ dependencies{
     compile "com.jiakaiyang:elf-java-statistics:$rootProject.ext.elfJavaStatistics"
     compile "com.querydsl:querydsl-sql:$rootProject.ext.querySQLVersion"
     compile "com.alibaba:druid:$rootProject.ext.druidVersion"
+    querydslapt  "com.mysema.querydsl:querydsl-apt:${querydslAptVersion}"
+    compile "com.mysema.querydsl:querydsl-sql-codegen:${querydslCodeGenVersion}"
 }
