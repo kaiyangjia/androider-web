@@ -1,7 +1,5 @@
-group 'com.jiakaiyang.androider-web'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
+group 'com.jiakaiyang'
+version '1.0'
 
 sourceCompatibility = 1.8
 
@@ -11,17 +9,8 @@ sourceSets{
 }
 
 dependencies{
-    // lib Dependencies
     compile files('libs/lombok.jar')
-    compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
-    compile "org.apache.commons:commons-lang3:$rootProject.ext.commonsLang3Version"
-    compile "com.google.inject:guice:$rootProject.ext.guiceVersion"
-//    compile "org.apache.commons:commons-configuration2:$rootProject.ext.commonsConfiguration2Version"
+    compile "com.jiakaiyang:elf-java-statistics:$rootProject.ext.elfJavaStatistics"
     compile "com.querydsl:querydsl-sql:$rootProject.ext.querySQLVersion"
     compile "com.alibaba:druid:$rootProject.ext.druidVersion"
-
-    // Dependencies for local unit tests
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
-    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
-    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
 }

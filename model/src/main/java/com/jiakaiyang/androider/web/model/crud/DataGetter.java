@@ -1,5 +1,7 @@
 package com.jiakaiyang.androider.web.model.crud;
 
+import com.jiakaiyang.elf.java.statistics.condition.ConditionContract;
+
 import java.util.List;
 
 /**
@@ -14,6 +16,22 @@ public interface DataGetter<T> {
      */
     public List<T> get(T condition);
 
+
+    /**
+     * 返回T数据源中字段名为fieldName值为fieldValue的数据列表
+     * @param fieldName
+     * @param fieldValue
+     * @return
+     */
+    public List<T> get(String fieldName, Object fieldValue);
+
+
+    /**
+     * 根据一个ConditionContract 条件来获取数据的列表
+     * @param conditon
+     * @return
+     */
+    public List<T> get(ConditionContract conditon);
 
     /**
      * 根据条件获取一个T的对象

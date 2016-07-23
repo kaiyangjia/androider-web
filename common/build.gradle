@@ -1,23 +1,8 @@
 group 'com.jiakaiyang'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
+version '1.0'
 
 sourceCompatibility = 1.8
 
 sourceSets{
     main.java.srcDirs = ['src/main/java']
-}
-
-dependencies{
-    // lib Dependencies
-    compile "org.slf4j:slf4j-simple:$rootProject.ext.slf4jSimpleVersion"
-    compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
-    compile "org.apache.commons:commons-lang3:$rootProject.ext.commonsLang3Version"
-    compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-
-    // Dependencies for local unit tests
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
-    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
-    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
 }

@@ -1,38 +1,52 @@
 group 'com.jiakaiyang'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'war'
-
-sourceCompatibility = 1.8
-
-dependencies{
-
-}
-
+version '1.0'
 
 allprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'war'
+
+    sourceCompatibility = 1.8
+
     repositories {
         jcenter()
         mavenCentral()
+        //my repo
+        maven{
+            url 'https://dl.bintray.com/kaiyangjia/maven/'
+        }
     }
-}
 
-// Define versions in a single place
-ext {
-    //lib dependencies
-    sparkFrameworkVersion = '2.5'
-    commonsLang3Version = '3.1'
-    commonsConfiguration2Version = '2.0'
-    guavaVersion = '19.0'
-    guiceVersion = '4.1.0'
-    querySQLVersion = '4.1.3'
-    druidVersion = '1.0.23'
-    gsonVersion = '2.7'
-    slf4jSimpleVersion = '1.7.12'
-    junitVersion = '4.12'
-    mockitoVersion = '1.10.19'
-    powerMockito = '1.6.2'
-    hamcrestVersion = '1.3'
+    // Define versions in a single place
+    ext {
+        //lib dependencies
+        sparkFrameworkVersion = '2.5'
+        commonsLang3Version = '3.1'
+        commonsConfiguration2Version = '2.0'
+        guavaVersion = '19.0'
+        guiceVersion = '4.1.0'
+        querySQLVersion = '4.1.3'
+        druidVersion = '1.0.23'
+        gsonVersion = '2.7'
+        elfJavaStatistics = '1.0'
+
+        //test
+        slf4jSimpleVersion = '1.7.12'
+        junitVersion = '4.12'
+        mockitoVersion = '1.10.19'
+        powerMockito = '1.6.2'
+        hamcrestVersion = '1.3'
+    }
+
+    dependencies{
+        // lib Dependencies
+        compile "com.google.guava:guava:${guavaVersion}"
+        compile "org.apache.commons:commons-lang3:${commonsLang3Version}"
+        compile "com.google.inject:guice:${guiceVersion}"
+
+        // Dependencies for local unit tests
+        testCompile "junit:junit:${junitVersion}"
+        testCompile "org.mockito:mockito-all:${mockitoVersion}"
+        testCompile "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+    }
 }
