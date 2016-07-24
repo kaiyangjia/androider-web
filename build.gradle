@@ -14,10 +14,6 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
-        //my repo
-        maven{
-            url 'https://dl.bintray.com/kaiyangjia/maven/'
-        }
     }
 
     // Define versions in a single place
